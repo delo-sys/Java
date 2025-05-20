@@ -20,7 +20,7 @@ public class Ex2
         height=1.76;
         System.out.println(len + "\n " +firstName + "\n " + haschidren + "\n " + height );
         System.out.println( 2+5);
-        System.out.println("grade scored is"+gradeMark);
+        System.out.println("grade scored is "+gradeMark);
     }
 
 }
