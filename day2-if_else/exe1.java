@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class exe1 {
+public class Exe1 {
     public static void main(String[] args) {
         double payRate,totalpay,hours,otHours;
         Scanner kb_input= new Scanner(System.in);

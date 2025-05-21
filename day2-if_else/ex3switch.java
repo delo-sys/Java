@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ex3switch {
+public class Ex3switch {
     public static void main(String[] args)
     {
         int daynumber;
