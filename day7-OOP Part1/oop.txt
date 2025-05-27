@@ -1,0 +1,49 @@
+//what is an object?
+    // An object is an instance of a class. It contains data and methods that operate on that data.
+
+//what is a method?
+    // A method is a function defined within a class that describes the behaviors of the objects created from that class.
+
+//what is a variable?
+    // A variable is a storage location identified by a name that can hold data which can be changed during program execution.
+
+//The principles of OOP (Object-Oriented Programming) include:
+    // 1. Encapsulation: Bundling data and methods that operate on that data within a single unit (class).
+    // 2. Abstraction: Hiding complex implementation details and showing only the necessary features of an object.
+    // 3. Inheritance: Allowing a new class to inherit properties and methods from an existing class.
+    // 4. Polymorphism: Allowing methods to do different things based on the object it is acting upon, typically through method overriding or overloading.
+//what is encapsulation?
+    // Encapsulation is the concept of wrapping data (variables) and methods that operate on that data within a single unit (class), restricting direct access to some of the object's components. This helps in protecting the integrity of the data and hiding complexity.
+//what is abstraction?
+    // Abstraction is the principle of simplifying complex systems by modeling classes based on the essential properties and behaviors while hiding unnecessary details. It allows focusing on what an object does rather than how it does it.
+//what is inheritance?
+    // Inheritance is a mechanism where a new class (subclass) can inherit properties and methods from an existing class (superclass). This promotes code reuse and establishes a hierarchical relationship between classes.
+//what is polymorphism?
+    // Polymorphism is the ability of different classes to be treated as instances of the same class through a common interface. It allows methods to be defined in a way that they can operate on objects of different classes, typically achieved through method overriding or overloading.
+//what is a constructor?
+    // A constructor is a special method in a class that is called when an object of that class is created. It initializes the object's properties and can take parameters to set initial values.
+//what is a destructor?
+        // A destructor is a special method that is called when an object is no longer needed and is about to be destroyed. It is used to perform cleanup operations, such as releasing resources or memory. In Java, destructors are not explicitly defined; instead, the garbage collector handles object destruction automatically.
+        //what is a static method?
+        // A static method belongs to the class rather than to any specific instance of the class. It can be called without creating an object of the class and is typically used for utility functions that do not require access to instance variables.
+        //what is a final variable?
+        // A final variable is a variable whose value cannot be changed once it has been assigned. It is declared using the `final` keyword and is often used to define constants in a program.
+        //what is a final method?
+        // A final method is a method that cannot be overridden by subclasses. It is declared using the `final` keyword and ensures that the specific implementation of the method remains unchanged in any derived class.
+        //what is a final class?
+        // A final class is a class that cannot be subclassed or extended. It is declared using the `final` keyword and is used to prevent inheritance, ensuring that the class's implementation remains unchanged.
+        //what is an interface?
+        // An interface is a reference type in Java that defines a contract of methods that a class must implement. It allows for defining behaviors that can be shared across different classes without enforcing a specific implementation, promoting flexibility and abstraction.
+        //what is an abstract class?
+        // An abstract class is a class that cannot be instantiated on its own and may contain abstract methods (methods without a body) that must be implemented by subclasses. It allows for defining common behaviors and properties while leaving some methods to be defined by derived classes, promoting code reuse and abstraction.
+        //what is a package?
+        // A package is a namespace that organizes a set of related classes and interfaces in Java. It helps in avoiding name conflicts, controlling access, and grouping related functionality together. Packages can be imported into other classes to use their defined classes and interfaces.
+        //what is a library?
+        // A library is a collection of pre-written code, classes, and functions that can be used to perform specific tasks or provide additional functionality in a program. Libraries can be included in projects to avoid reinventing the wheel and to leverage existing solutions for common problems.
+        //what is a framework?
+        // A framework is a pre-built structure that provides a foundation for developing applications. It includes libraries, tools, and conventions that help developers build software more efficiently by providing reusable components and a defined way of organizing code. Frameworks often dictate the architecture of the application and provide built-in functionalities to streamline development.
+        //what is a runtime environment?
+        // A runtime environment is the environment in which a program is executed. It includes the necessary software and hardware resources, such as the Java Virtual Machine (JVM) for Java programs, that allow the code to run. The runtime environment manages memory allocation, execution of code, and provides access to system resources.
+        //what is a virtual machine?
+        // A virtual machine (VM) is an emulation of a physical computer that allows software to run as if it were on a real machine. In the context of Java, the Java Virtual Machine (JVM) executes Java bytecode, providing an environment for Java applications to run independently of the underlying hardware and operating system. It handles memory management, garbage collection, and provides a platform for executing Java programs.
+    //creating own class
