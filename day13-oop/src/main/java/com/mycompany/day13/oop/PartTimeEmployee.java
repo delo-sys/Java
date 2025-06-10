@@ -44,6 +44,6 @@ public PartTimeEmployee()
     }
     public double getpay()
     {
-        return this.hoursWorked; 
+        return this.hoursWorked*this.rate; 
     }
 }

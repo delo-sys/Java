@@ -12,7 +12,6 @@ public class ComissionEmployee extends Employee
 {
     private double empRate;
     private double empSales;
-    private double empComission;
     public ComissionEmployee(double rate,double sales)
     {
 
@@ -24,7 +23,10 @@ public class ComissionEmployee extends Employee
         super(no,name,address);
         this.empRate=rate;
         this.empSales=sales;
-        
+    }
+    public double getpay() 
+    {
+        return this.empSales * this.empRate/100;
     }
 
 }

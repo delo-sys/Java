@@ -18,9 +18,32 @@ public class main
         String no,name,address;
         int hrs;
         double rate;
-        System.out.println("enter employee number");
+        double sales;
+        
+        System.out.println("Enter employee number:");
         no=kb_input.nextLine();
-        PartTimeEmployee pt1=new PartTimeEmployee(); 
+        System.out.println("Enter employee name:");
+        name=kb_input.nextLine();
+        System.out.println("Enter employee address");
+        address=kb_input.nextLine();
+        System.out.println("Enter employee hoursWorked");
+        hrs=kb_input.nextInt();
+        
+        kb_input.nextLine();
+        
+        System.out.println("Enter PAY RATE PER HOUR");
+        rate=kb_input.nextDouble();
+
+        System.out.println("Enter SALES AMOUNT");
+        sales=kb_input.nextDouble();
+        
+        PartTimeEmployee pt1=new PartTimeEmployee(no,name,address,hrs,rate);
+        System.out.print(pt1);
+            System.out.print(pt1.getpay());
+            
+        ComissionEmployee ce = new ComissionEmployee(no, name, address,rate, sales);
+        System.out.print(ce);
+        System.out.print(ce.getpay());
 //        PartTimeEmployee ptemp=new PartTimeEmployee();
 //        ptemp.setEmpNo("1200");
 //        ptemp.setEmpname("doca");
