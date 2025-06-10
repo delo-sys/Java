@@ -8,15 +8,24 @@ package com.mycompany.day13.oop;
  *
  * @author Student
  */
+import java.util.Scanner;
+
 public class main 
 {
+    static Scanner kb_input=new Scanner (System.in);
     public static void main(String[]args)
     {
-        PartTimeEmployee ptemp=new PartTimeEmployee();
-        ptemp.setEmpNo("1200");
-        ptemp.setEmpname("doca");
-        ptemp.setEmpAddress("Nairobi");
+        String no,name,address;
+        int hrs;
+        double rate;
+        System.out.println("enter employee number");
+        no=kb_input.nextLine();
+        PartTimeEmployee pt1=new PartTimeEmployee(); 
+//        PartTimeEmployee ptemp=new PartTimeEmployee();
+//        ptemp.setEmpNo("1200");
+//        ptemp.setEmpname("doca");
+//        ptemp.setEmpAddress("Nairobi");
         
-        System.out.print(ptemp.toString());
+//        System.out.print(ptemp.toString());
     }
 }
