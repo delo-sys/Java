@@ -13,6 +13,7 @@ public class Main {
     JButton button=new JButton("click me");
     JTextField txtField=new JTextField(20);
     JPanel panel=new JPanel();
+    
     window.setTitle("first window");
     window.setSize(WIDTH,LENGTH);
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
