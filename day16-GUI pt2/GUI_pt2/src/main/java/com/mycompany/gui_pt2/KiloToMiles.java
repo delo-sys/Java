@@ -42,5 +42,19 @@ public class KiloToMiles extends JFrame
     public static void main(String[] args)
     {
         new KiloToMiles();
+        /* Add action listener for Convert button */
+        KiloToMiles frame = new KiloToMiles();
+        frame.btnConvert.addActionListener(e -> {
+            try {
+                double km = Double.parseDouble(frame.txtKilo.getText());
+                double miles = km * 0.621371;
+                JOptionPane.showMessageDialog(frame, km + " km = " + miles + " miles");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame, "Please enter a valid number.");
+            }
+        });
+
+        /* Add action listener for Exit button */
+        frame.btnExit.addActionListener(e -> System.exit(0));
     }
 }

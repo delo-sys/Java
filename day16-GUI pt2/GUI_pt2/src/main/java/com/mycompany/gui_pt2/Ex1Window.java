@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class Ex1Window extends JFrame
 {
     private JTextField radiusField;
@@ -44,5 +45,9 @@ public class Ex1Window extends JFrame
         });
 
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new Ex1Window();
     }
 }
