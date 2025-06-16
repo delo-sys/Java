@@ -1,6 +1,8 @@
 
 package com.mycompany.gui_pt2;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class KiloToMiles extends JFrame 
 {
@@ -30,7 +32,9 @@ public class KiloToMiles extends JFrame
         lblKilo=new JLabel("Enter Distance in KMs");
         txtKilo=new JTextField(10);
         btnConvert=new JButton("Convert");
+        btnConvert.addActionListener(new BtnConvertListener());
         btnExit=new JButton("Exit");
+        btnExit.addActionListener(new btnExitListener());
         panel=new JPanel();
         
         panel.add(lblKilo);
@@ -39,22 +43,32 @@ public class KiloToMiles extends JFrame
         panel.add(btnExit);
         
     }
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         new KiloToMiles();
-        /* Add action listener for Convert button */
-        KiloToMiles frame = new KiloToMiles();
-        frame.btnConvert.addActionListener(e -> {
+    }
+    
+    private class BtnConvertListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            final double CONVERSION = 0.6214;
+            String input;
+            input = txtKilo.getText();
+            double miles = 0.0;
             try {
-                double km = Double.parseDouble(frame.txtKilo.getText());
-                double miles = km * 0.621371;
-                JOptionPane.showMessageDialog(frame, km + " km = " + miles + " miles");
+                miles = CONVERSION * Double.parseDouble(input);
+                JOptionPane.showMessageDialog(panel, input + " kilometers is " + miles + " miles.");
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(frame, "Please enter a valid number.");
+                JOptionPane.showMessageDialog(panel, "Please enter a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
             }
-        });
+        }
+    }
 
-        /* Add action listener for Exit button */
-        frame.btnExit.addActionListener(e -> System.exit(0));
+    private class btnExitListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            System.exit(0);
+        }
     }
 }
