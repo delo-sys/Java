@@ -102,7 +102,7 @@ public class UsersForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String sql="SELECT * FROM Contact WHERE Username LIKE ? AND Password LIKE? ";
+        String sql="SELECT * FROM Users WHERE Username LIKE ? AND Password LIKE? ";
         try
         {
             pstm = con.prepareStatement(sql);
@@ -110,8 +110,12 @@ public class UsersForm extends javax.swing.JFrame {
             pstm.setString(2, new String(password.getText()));
             rs = pstm.executeQuery();
             if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Login Successful!");
-                // Proceed to next form or logic
+            JOptionPane.showMessageDialog(this, "Login Successful!");
+            con.close();
+            contactsForm obj = new contactsForm ();
+            obj.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+            obj.setVisible(true);
+            this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password!");
             }
