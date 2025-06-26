@@ -2,8 +2,11 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class ContactsForm extends javax.swing.JFrame 
@@ -13,12 +16,14 @@ public class ContactsForm extends javax.swing.JFrame
     Connection con = null;
     PreparedStatement pstm=null;
     ResultSet rs=null;
+    DefaultTableModel dtm;
         public ContactsForm() 
         {
         initComponents();
         con = DBConnection.connect();
+        loadData();
         }
-       @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -101,15 +106,17 @@ public class ContactsForm extends javax.swing.JFrame
 
         tblContacts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "rowid", "name", "phone", "email", "address"
             }
         ));
+        tblContacts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblContactsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblContacts);
 
         btnSave.setText("Save");
@@ -120,12 +127,32 @@ public class ContactsForm extends javax.swing.JFrame
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,31 +215,146 @@ public class ContactsForm extends javax.swing.JFrame
         try 
         {
             String name=txtName.getText();
-           String phone=txtPhone.getText();
-           String email=txtEmail.getText();
-           String address=txtAddress.getText();
-           String sql = "INSERT INTO tblContacts(name,phone,email,address) values(?,?,?,?)";
+            String phone=txtPhone.getText();
+            String email=txtEmail.getText();
+            String address=txtAddress.getText();
+            String sql = "INSERT INTO tblContacts(name,phone,email,address) values(?,?,?,?)";
             pstm = con.prepareStatement(sql);
-             pstm.setString(1, name);
-           pstm.setString(2, phone);
-           pstm.setString(3, email);
-           pstm.setString(4, address);
-           pstm.executeUpdate();
-           JOptionPane.showMessageDialog(this, "Contact added");
-           txtName.setText("");
-           txtPhone.setText("");
-           txtEmail.setText("");
-           txtAddress.setText("");
-           txtName.requestFocus();
+            pstm.setString(1, name);
+        pstm.setString(2, phone);
+        pstm.setString(3, email);
+        pstm.setString(4, address);
+        pstm.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Contact added");
+        txtName.setText("");
+        txtPhone.setText("");
+        txtEmail.setText("");
+        txtAddress.setText("");
+        txtName.requestFocus();
         } catch (SQLException ex) 
         {
             System.getLogger(ContactsForm.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
-          
-                  
-       
+    
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void tblContactsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblContactsMouseClicked
+        dtm = (DefaultTableModel)tblContacts.getModel();
+        int selectedIndex=tblContacts.getSelectedRow();
+        String rowid=dtm.getValueAt(selectedIndex,0).toString();
+        txtName.setText(dtm.getValueAt(selectedIndex,1).toString());
+        txtPhone.setText(dtm.getValueAt(selectedIndex,2).toString());
+        txtEmail.setText(dtm.getValueAt(selectedIndex,3).toString());
+        txtAddress.setText(dtm.getValueAt(selectedIndex,4).toString());
+        btnSave.setEnabled(false);
+
+    }//GEN-LAST:event_tblContactsMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+
+        try 
+        {
+        dtm = (DefaultTableModel)tblContacts.getModel();
+        int selectedIndex=tblContacts.getSelectedRow();
+        String rowid=dtm.getValueAt(selectedIndex,0).toString();
+        
+            String name=txtName.getText();
+            String phone=txtPhone.getText();
+            String email=txtEmail.getText();
+            String address=txtAddress.getText();
+            String sql = "UPDATE tblContacts SET name=?,phone=?,email=?,address=? WHERE rowid=?";
+            pstm = con.prepareStatement(sql);
+            pstm.setString(1, name);
+            pstm.setString(2, phone);
+            pstm.setString(3, email);
+            pstm.setString(4, address);
+            pstm.setString(5, rowid);
+            pstm.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Contact updated");
+            btnSave.setEnabled(true);
+            loadData();
+            txtName.setText("");
+            txtPhone.setText("");
+            txtEmail.setText("");
+            txtAddress.setText("");
+            txtName.requestFocus();
+        } catch (SQLException ex) 
+        {
+            System.getLogger(ContactsForm.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        } 
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {
+        txtName.setText("");
+        txtPhone.setText("");
+        txtEmail.setText("");
+        txtAddress.setText("");
+        btnSave.setEnabled(true);
+        tblContacts.clearSelection();
+        txtName.requestFocus();
+    }                                        
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            dtm = (DefaultTableModel) tblContacts.getModel();
+            int selectedIndex = tblContacts.getSelectedRow();
+            if (selectedIndex == -1) {
+                JOptionPane.showMessageDialog(this, "Please select a contact to delete.");
+                return;
+            }
+            String rowid = dtm.getValueAt(selectedIndex, 0).toString();
+            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this contact?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                String sql = "DELETE FROM tblContacts WHERE rowid=?";
+                pstm = con.prepareStatement(sql);
+                pstm.setString(1, rowid);
+                pstm.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Contact deleted");
+                btnSave.setEnabled(true);
+                loadData();
+                txtName.setText("");
+                txtPhone.setText("");
+                txtEmail.setText("");
+                txtAddress.setText("");
+                txtName.requestFocus();
+            }
+        } catch (SQLException ex) {
+            System.getLogger(ContactsForm.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }                                         
+
+    public void loadData()
+    {
+        int c;
+        try {
+            pstm = con.prepareStatement("Select rowid, name,phone,email,address from tblContacts");
+            rs=pstm.executeQuery();
+            ResultSetMetaData rsdm = rs.getMetaData();
+            c = rsdm.getColumnCount();
+            dtm = (DefaultTableModel)tblContacts.getModel();
+            dtm.setRowCount(0);
+            while(rs.next())
+            {
+                Vector v = new Vector(); 
+                for(int i=1;i<=c;i++)
+                {
+                    v.add(rs.getString("rowid"));
+                    v.add(rs.getString("name"));
+                    v.add(rs.getString("phone"));
+                    v.add(rs.getString("email"));
+                    v.add(rs.getString("address"));
+                }
+                dtm.addRow(v);
+            }
+            
+        } catch (SQLException ex) {
+            System.getLogger(ContactsForm.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
     /**
      * @param args the command line arguments
      */
