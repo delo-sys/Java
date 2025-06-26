@@ -1,8 +1,7 @@
 
-package com.mycompany.idbc;
+package com.mycompany.day26_jdbc;
 
-
-public class JDBC {
+public class Day26_JDBC {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
